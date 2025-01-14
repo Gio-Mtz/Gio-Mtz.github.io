@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./themes/light-theme" as light;
+@use "./themes/dark-theme" as dark;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body.light-theme {
+  @include light.angular-material-theme(light.$light-theme);
+}
+
+body.dark-theme {
+  @include dark.angular-material-theme(dark.$dark-theme);
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,8 @@
+<div class="experience">
+  <h2>Experience</h2>
+  <div *ngFor="let experience of experienceData">
+    <h3>{{ experience.company }}</h3>
+    <p>{{ experience.role }} - {{ experience.duration }}</p>
+    <p>{{ experience.description }}</p>
+  </div>
+</div>
