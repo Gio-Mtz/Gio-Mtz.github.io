@@ -15,17 +15,16 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
-  selector: 'app-portfolio',
-  standalone: true,
-  imports: [
-    HeroComponent,
-    AboutComponent,
-    ExperienceComponent,
-    SkillsComponent,
-    ProjectsComponent,
-  ],
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss'],
+    selector: 'app-portfolio',
+    imports: [
+        HeroComponent,
+        AboutComponent,
+        ExperienceComponent,
+        SkillsComponent,
+        ProjectsComponent,
+    ],
+    templateUrl: './portfolio.component.html',
+    styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements OnInit, AfterViewInit {
   private sections: HTMLElement[] = [];

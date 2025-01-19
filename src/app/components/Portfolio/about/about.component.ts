@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-about',
-  standalone: true,
-  imports: [MatCardModule, MatDividerModule, CommonModule, MatIconModule],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
+    selector: 'app-about',
+    imports: [MatCardModule, MatDividerModule, CommonModule, MatIconModule],
+    templateUrl: './about.component.html',
+    styleUrl: './about.component.scss'
 })
 export class AboutComponent implements OnInit {
   aboutData: any;

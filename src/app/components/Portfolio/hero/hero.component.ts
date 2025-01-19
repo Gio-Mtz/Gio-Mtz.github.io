@@ -4,11 +4,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
-  selector: 'app-hero',
-  standalone: true,
-  imports: [MatCardModule, MatDividerModule],
-  templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
+    selector: 'app-hero',
+    imports: [MatCardModule, MatDividerModule],
+    templateUrl: './hero.component.html',
+    styleUrl: './hero.component.scss'
 })
 export class HeroComponent implements OnInit {
   heroData: any;
