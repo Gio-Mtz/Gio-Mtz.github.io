@@ -1,0 +1,36 @@
+<mat-card class="about">
+  <mat-card-content class="about-content">
+    <mat-card-subtitle class="about-subtitle">Education</mat-card-subtitle>
+    <div *ngFor="let data of aboutData">
+      <h3>{{ data.education.degree }}</h3>
+      <span class="education-date">{{ data.education.duration }}</span>
+      <br />
+      <span>{{ data.education.institute }}</span>
+      <br />
+      <span>{{ data.education.location }}</span>
+      <br />
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="contact-info">
+      <span>{{ contactInfo.phone }}</span>
+      <mat-icon>phone</mat-icon>
+    </div>
+    <div class="contact-info">
+      <span>{{ contactInfo.email }}</span>
+      <mat-icon>email</mat-icon>
+    </div>
+    <div class="contact-info">
+      <span
+        ><a [href]="contactInfo.linkedin" target="”_blank”"
+          >gio-martinez-g</a
+        ></span
+      >
+      <mat-icon>linkedin</mat-icon>
+    </div>
+    <div class="contact-info">
+      <span>{{ contactInfo.location }}</span>
+      <mat-icon>location_on</mat-icon>
+    </div>
+  </mat-card-actions>
+</mat-card>

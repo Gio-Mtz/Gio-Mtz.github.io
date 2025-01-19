@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
-import { PortfolioListComponent } from './portfolio-list/portfolio-list.component';
-import { HeaderComponent } from '../Shared/Header/header.component';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Inject,
+  PLATFORM_ID,
+  HostListener,
+  Host,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HeroComponent } from './hero/hero.component';
+import { AboutComponent } from './about/about.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -11,11 +19,129 @@ import { ProjectsComponent } from './projects/projects.component';
   standalone: true,
   imports: [
     HeroComponent,
+    AboutComponent,
     ExperienceComponent,
     SkillsComponent,
     ProjectsComponent,
   ],
   templateUrl: './portfolio.component.html',
-  styleUrl: './portfolio.component.scss',
+  styleUrls: ['./portfolio.component.scss'],
 })
-export class PortfolioComponent {}
+export class PortfolioComponent implements OnInit, AfterViewInit {
+  private sections: HTMLElement[] = [];
+  private indexLinks: HTMLElement[] = [];
+  private currentSectionIndex: number = 0;
+  private isScrolling: boolean = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    console.log(this);
+  }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.showSection('hero'); // Show the first section by default
+    }
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.sections = Array.from(document.querySelectorAll('.section'));
+      this.indexLinks = Array.from(document.querySelectorAll('.index li'));
+    }
+  }
+
+  @HostListener('window:wheel', ['$event'])
+  onWindowWheel(event: WheelEvent) {
+    if (this.isScrolling) return;
+
+    if (event.deltaY > 0) {
+      this.nextSection();
+    } else {
+      this.previousSection();
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onWindowKeyDown(event: KeyboardEvent) {
+    if (this.isScrolling) return;
+
+    if (event.key === 'ArrowRight') {
+      this.nextSection();
+    } else if (event.key === 'ArrowLeft') {
+      this.previousSection();
+    }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    if (this.isScrolling) return;
+
+    const currentSection = this.sections[this.currentSectionIndex];
+    const currentSectionTop = currentSection.getBoundingClientRect().top;
+
+    if (currentSectionTop > 0) {
+      this.currentSectionIndex--;
+      this.updateActiveLink(this.sections[this.currentSectionIndex].id);
+    } else if (currentSectionTop < 0) {
+      this.currentSectionIndex++;
+      this.updateActiveLink(this.sections[this.currentSectionIndex].id);
+    }
+  }
+
+  nextSection() {
+    if (this.currentSectionIndex < this.sections.length - 1) {
+      this.currentSectionIndex++;
+      this.scrollToSection(this.sections[this.currentSectionIndex].id);
+    }
+  }
+
+  previousSection() {
+    if (this.currentSectionIndex > 0) {
+      this.currentSectionIndex--;
+      this.scrollToSection(this.sections[this.currentSectionIndex].id);
+    }
+  }
+
+  scrollToSection(sectionId: string) {
+    this.isScrolling = true;
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ behavior: 'smooth' });
+
+    setTimeout(() => {
+      this.isScrolling = false;
+    }, 1000);
+
+    this.updateActiveLink(sectionId);
+  }
+
+  showSection(sectionId: string) {
+    this.sections.forEach((section) => {
+      section.classList.remove('active');
+    });
+
+    this.indexLinks.forEach((link) => {
+      link.classList.remove('active');
+    });
+
+    const activeSection = document.getElementById(sectionId);
+    const activeLink = document.querySelector(`#${sectionId}-link`);
+
+    activeSection?.classList.add('active');
+    activeLink?.classList.add('active');
+
+    this.currentSectionIndex = this.sections.findIndex(
+      (section) => section.id === sectionId
+    );
+
+    activeSection?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  updateActiveLink(sectionId: string) {
+    this.indexLinks.forEach((link) => {
+      link.classList.remove('active');
+    });
+
+    const activeLink = document.querySelector(`#${sectionId}-link`);
+    activeLink?.classList.add('active');
+  }
+}

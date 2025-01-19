@@ -1,16 +1,43 @@
 <div class="projects">
-  <h2>Projects</h2>
-  <owl-carousel-o>
-    <ng-container *ngFor="let project of projectsData">
-      <ng-template carouselSlide [id]="project.id">
+  <div class="projects-scroll-container">
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let project of projectsData">
         <mat-card>
-          <img mat-card-image [src]="project.imageUrl" [alt]="project.title" />
+          <img
+            *ngIf="project.imageUrl"
+            mat-card-image
+            [src]="project.imageUrl"
+            [alt]="project.title"
+          />
           <mat-card-content>
             <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
+            {{ project.description }}
+            <br />
+            <img
+              mat-card-image
+              [src]="project.imageBottomUrl"
+              [alt]="project.title"
+              class="project-image-bottom"
+            />
           </mat-card-content>
+          <mat-card-actions>
+            <a
+              mat-button
+              *ngIf="project.githubUrl"
+              [href]="project.githubUrl"
+              target="_blank"
+              >GitHub</a
+            >
+            <a
+              mat-button
+              *ngIf="project.demoUrl"
+              [href]="project.demoUrl"
+              target="_blank"
+              >Demo</a
+            >
+          </mat-card-actions>
         </mat-card>
-      </ng-template>
-    </ng-container>
-  </owl-carousel-o>
+      </div>
+    </div>
+  </div>
 </div>

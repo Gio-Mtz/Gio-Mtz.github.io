@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { AppService } from '../../../app.service';
+import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -10,12 +9,14 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private appService: AppService) {}
-
-  toggleTheme() {
-    const activeTheme = this.appService.getActiveTheme();
-    const newTheme =
-      activeTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-    this.appService.setActiveTheme(newTheme);
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+      console.log('scrolling');
+      header?.classList.add('blur');
+    } else {
+      header?.classList.remove('blur');
+    }
   }
 }

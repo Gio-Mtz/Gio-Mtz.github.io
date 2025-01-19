@@ -1,0 +1,83 @@
+@use "@angular/material" as mat;
+@import "../../../../styles.scss";
+
+.about {
+  display: flex;
+  flex-direction: column;
+  background-color: mat.get-color-from-palette($custom-primary, 900);
+  box-shadow: none;
+}
+
+mat-card-header {
+  justify-content: flex-start;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  color: mat.get-color-from-palette($custom-primary, 100);
+}
+
+mat-icon {
+  margin-left: 0.5rem;
+}
+
+h3 {
+  margin: 0;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.about-subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: mat.get-color-from-palette($custom-primary, 200);
+  text-decoration: underline;
+}
+
+.education-date {
+  font-size: 1rem;
+  color: mat.get-color-from-palette($custom-primary, 200);
+}
+
+.about-content {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: mat.get-color-from-palette($custom-primary, 100);
+  &:visited {
+    color: mat.get-color-from-palette($custom-primary, 100);
+  }
+  &:hover {
+    transform: scale(1.1);
+    color: mat.get-color-from-palette($custom-primary, 200);
+  }
+  &:active {
+    color: mat.get-color-from-palette($custom-primary, 100);
+  }
+}
+
+@media (min-width: 768px) {
+  .about {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+}

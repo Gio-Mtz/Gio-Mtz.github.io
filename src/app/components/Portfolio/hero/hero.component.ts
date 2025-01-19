@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioMockDataService } from '../portfolio-mock-data.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatDividerModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })

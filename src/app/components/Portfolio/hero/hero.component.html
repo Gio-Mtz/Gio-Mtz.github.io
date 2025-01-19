@@ -1,4 +1,13 @@
-<div class="hero">
-  <h1>{{ heroData.name }}</h1>
-  <p>{{ heroData.description }}</p>
-</div>
+<mat-card class="hero">
+  <mat-card-header>
+    <mat-card-title class="hero-title">
+      {{ heroData.name }}
+    </mat-card-title>
+    <mat-card-subtitle class="hero-subtitle">
+      {{ heroData.title }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="hero-content">{{
+    heroData.description
+  }}</mat-card-content>
+</mat-card>

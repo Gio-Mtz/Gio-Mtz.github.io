@@ -1,4 +1,24 @@
-<app-hero></app-hero>
-<app-experience></app-experience>
-<app-skills></app-skills>
-<app-projects></app-projects>
+<div class="container">
+  <div class="index">
+    <ul>
+      <li id="hero-link" (click)="showSection('hero')">Profile</li>
+      <li id="about-link" (click)="showSection('about')">About Me</li>
+      <li id="experience-link" (click)="showSection('experience')">
+        Experience
+      </li>
+      <li id="skills-link" (click)="showSection('skills')">Skills</li>
+      <li id="projects-link" (click)="showSection('projects')">Projects</li>
+    </ul>
+  </div>
+  <div class="content">
+    <section id="hero" class="section"><app-hero></app-hero></section>
+    <section id="about" class="section"><app-about></app-about></section>
+    <section id="experience" class="section">
+      <app-experience></app-experience>
+    </section>
+    <section id="skills" class="section"><app-skills></app-skills></section>
+    <section id="projects" class="section">
+      <app-projects></app-projects>
+    </section>
+  </div>
+</div>

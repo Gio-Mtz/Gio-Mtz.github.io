@@ -1,11 +1,131 @@
-@use "./themes/light-theme" as light;
-@use "./themes/dark-theme" as dark;
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// Define custom colors
+$custom-primary: mat.define-palette(
+  (
+    50: #e3eaf7,
+    100: #b3c2e1,
+    200: #8099ca,
+    300: #4d70b3,
+    400: #264fa1,
+    500: #071952,
+    600: #06164a,
+    700: #051240,
+    800: #040e36,
+    900: #030a2b,
+    A100: #b3c2e1,
+    A200: #8099ca,
+    A400: #264fa1,
+    A700: #051240,
+    contrast: (
+      50: rgba(0, 0, 0, 0.87),
+      100: rgba(0, 0, 0, 0.87),
+      200: rgba(0, 0, 0, 0.87),
+      300: rgba(0, 0, 0, 0.87),
+      400: white,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      A100: rgba(0, 0, 0, 0.87),
+      A200: white,
+      A400: white,
+      A700: white,
+    ),
+  )
+);
+
+$custom-accent: mat.define-palette(
+  (
+    50: #f2e6ff,
+    100: #d9b3ff,
+    200: #bf80ff,
+    300: #a64dff,
+    400: #8c1aff,
+    500: #7200e6,
+    600: #5b00b3,
+    700: #450080,
+    800: #2e004d,
+    900: #9400ff,
+    A100: #d9b3ff,
+    A200: #bf80ff,
+    A400: #8c1aff,
+    A700: #450080,
+    contrast: (
+      50: rgba(0, 0, 0, 0.87),
+      100: rgba(0, 0, 0, 0.87),
+      200: rgba(0, 0, 0, 0.87),
+      300: rgba(0, 0, 0, 0.87),
+      400: white,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      A100: rgba(0, 0, 0, 0.87),
+      A200: white,
+      A400: white,
+      A700: white,
+    ),
+  )
+);
+
+$custom-warn: mat.define-palette(
+  (
+    50: #f2f9ff,
+    100: #d9eaff,
+    200: #bfdbff,
+    300: #a6ccff,
+    400: #8cbdff,
+    500: #72aeff,
+    600: #5b9fff,
+    700: #458fff,
+    800: #2e80ff,
+    900: #aed2ff,
+    A100: #d9eaff,
+    A200: #bfdbff,
+    A400: #8cbdff,
+    A700: #458fff,
+    contrast: (
+      50: rgba(0, 0, 0, 0.87),
+      100: rgba(0, 0, 0, 0.87),
+      200: rgba(0, 0, 0, 0.87),
+      300: rgba(0, 0, 0, 0.87),
+      400: white,
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      A100: rgba(0, 0, 0, 0.87),
+      A200: white,
+      A400: white,
+      A700: white,
+    ),
+  )
+);
+
+// Define the custom theme
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($theme);
 
 html,
 body {
   height: 100%;
   margin: 0;
-  font-family: Roboto, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -20,17 +140,9 @@ body {
   height: 100%;
 }
 
-body.light-theme {
-  @include light.angular-material-theme(light.$light-theme);
-}
-
-body.dark-theme {
-  @include dark.angular-material-theme(dark.$dark-theme);
-}
-
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-track {
