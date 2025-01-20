@@ -5,10 +5,10 @@ import { PortfolioComponent } from './components/Portfolio/portfolio.component';
 import { FooterComponent } from './components/Shared/Footer/footer.component';
 
 @Component({
-    selector: 'app-root',
-    imports: [HeaderComponent, PortfolioComponent, FooterComponent],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [PortfolioComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'portfolio';

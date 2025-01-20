@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-about',
-    imports: [MatCardModule, MatDividerModule, CommonModule, MatIconModule],
-    templateUrl: './about.component.html',
-    styleUrl: './about.component.scss'
+  selector: 'app-about',
+  imports: [MatCardModule, MatDividerModule, CommonModule, MatIconModule],
+  templateUrl: './about.component.html',
+  styleUrl: './about.component.scss',
+  providers: [PortfolioMockDataService],
 })
 export class AboutComponent implements OnInit {
   aboutData: any;

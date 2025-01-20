@@ -5,7 +5,11 @@ import {
   Inject,
   PLATFORM_ID,
   HostListener,
-  Host,
+  OnChanges,
+  SimpleChanges,
+  signal,
+  effect,
+  Injector,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HeroComponent } from './hero/hero.component';
@@ -15,42 +19,62 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
-    selector: 'app-portfolio',
-    imports: [
-        HeroComponent,
-        AboutComponent,
-        ExperienceComponent,
-        SkillsComponent,
-        ProjectsComponent,
-    ],
-    templateUrl: './portfolio.component.html',
-    styleUrls: ['./portfolio.component.scss']
+  selector: 'app-portfolio',
+  imports: [
+    HeroComponent,
+    AboutComponent,
+    ExperienceComponent,
+    SkillsComponent,
+    ProjectsComponent,
+  ],
+  templateUrl: './portfolio.component.html',
+  styleUrls: ['./portfolio.component.scss'],
 })
-export class PortfolioComponent implements OnInit, AfterViewInit {
+export class PortfolioComponent implements OnInit, AfterViewInit, OnChanges {
   private sections: HTMLElement[] = [];
   private indexLinks: HTMLElement[] = [];
   private currentSectionIndex: number = 0;
   private isScrolling: boolean = false;
+  private signalEffect = effect(() =>
+    console.log(`Signal effect outside constructor ${this.newSignal()}`)
+  );
+  newSignal = signal(0);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    console.log(this);
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private injector: Injector
+  ) {
+    effect(
+      () => {
+        console.log(this.newSignal());
+      },
+      { injector: this.injector }
+    );
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.showSection('hero'); // Show the first section by default
+      this.showSection('hero');
     }
+    this.newSignal.set(1);
   }
 
   ngAfterViewInit() {
+    this.newSignal.set(2);
     if (isPlatformBrowser(this.platformId)) {
       this.sections = Array.from(document.querySelectorAll('.section'));
       this.indexLinks = Array.from(document.querySelectorAll('.index li'));
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    this.newSignal.set(3);
+  }
+
   @HostListener('window:wheel', ['$event'])
   onWindowWheel(event: WheelEvent) {
+    this.newSignal.update((value) => value + 1);
     if (this.isScrolling) return;
 
     if (event.deltaY > 0) {
