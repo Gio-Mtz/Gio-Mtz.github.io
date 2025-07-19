@@ -1,13 +1,10 @@
 @use "@angular/material" as mat;
-@import "../../../styles.scss";
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  background-color: mat.m2-get-color-from-palette($custom-primary, 900);
-  color: mat.m2-get-color-from-palette($custom-primary, 300);
 }
 
 .index {
