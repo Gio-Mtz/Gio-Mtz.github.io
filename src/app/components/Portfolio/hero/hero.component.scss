@@ -1,9 +1,11 @@
 @use "@angular/material" as mat;
+@import "../../../../styles.scss";
 
 .hero {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  background-color: mat.m2-get-color-from-palette($custom-primary, 900);
   box-shadow: none;
 }
 
@@ -17,6 +19,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: mat.m2-get-color-from-palette($custom-primary, 200);
   text-decoration: underline;
 }
 
@@ -24,6 +27,7 @@
   font-size: 1rem;
   margin-bottom: 1rem;
   text-align: left;
+  color: mat.m2-get-color-from-palette($custom-primary, 100);
 }
 
 @media (min-width: 768px) {

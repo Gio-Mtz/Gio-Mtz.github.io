@@ -1,8 +1,10 @@
 @use "@angular/material" as mat;
+@import "../../../../styles.scss";
 
 .about {
   display: flex;
   flex-direction: column;
+  background-color: mat.m2-get-color-from-palette($custom-primary, 900);
   box-shadow: none;
 }
 
@@ -14,6 +16,7 @@ mat-card-actions {
   display: flex;
   flex-direction: column;
   align-items: end;
+  color: mat.m2-get-color-from-palette($custom-primary, 100);
 }
 
 mat-icon {
@@ -34,11 +37,13 @@ h3 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: mat.m2-get-color-from-palette($custom-primary, 200);
   text-decoration: underline;
 }
 
 .education-date {
   font-size: 1rem;
+  color: mat.m2-get-color-from-palette($custom-primary, 200);
 }
 
 .about-content {
@@ -51,6 +56,21 @@ h3 {
   flex-direction: row;
   align-items: center;
   padding: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: mat.m2-get-color-from-palette($custom-primary, 100);
+  &:visited {
+    color: mat.m2-get-color-from-palette($custom-primary, 100);
+  }
+  &:hover {
+    transform: scale(1.1);
+    color: mat.m2-get-color-from-palette($custom-primary, 200);
+  }
+  &:active {
+    color: mat.m2-get-color-from-palette($custom-primary, 100);
+  }
 }
 
 @media (min-width: 768px) {
