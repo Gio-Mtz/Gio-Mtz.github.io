@@ -1,7 +1,7 @@
 <div class="projects">
   <div class="projects-scroll-container">
     <div class="projects-grid">
-      <div class="project-card" *ngFor="let project of projectsData">
+      <div class="project-card" *ngFor="let project of projects$ | async">
         <mat-card>
           <img
             *ngIf="project.imageUrl"

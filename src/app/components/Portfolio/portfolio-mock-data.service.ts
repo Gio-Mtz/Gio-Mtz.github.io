@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'any',
@@ -94,8 +95,8 @@ export class PortfolioMockDataService {
     };
   }
 
-  getProjectsData() {
-    return [
+  getProjectsData(): Observable<any> {
+    return of([
       {
         title: 'Infantem',
         description:
@@ -125,6 +126,6 @@ export class PortfolioMockDataService {
         imageUrl: 'assets/images/forge-web-studio-desktop.png',
         imageBottomUrl: 'assets/images/forge-web-studio-mobile.png',
       },
-    ];
+    ]);
   }
 }
