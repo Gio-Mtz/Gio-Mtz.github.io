@@ -2,7 +2,7 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: '/Gio-Mtz.github.io/',
+  baseHref: 'C:/Program Files/Git/',
   locale: undefined,
   routes: undefined,
   entryPointToBrowserMapping: {
@@ -14,8 +14,8 @@ export default {
   ]
 },
   assets: {
-    'index.csr.html': {size: 54456, hash: 'a5d93fef586e0a824e178aacd10f36e2d1729b72a9b330d49d3254159f28800f', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 17249, hash: 'e467d040335faf4c9d4a03cb18bc0010fafc8022acc400e5d8c6fb84d2d1d2c4', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 54458, hash: 'b5ccfab37ff7abe6ac57a5ba1a4b1a2736240f1481e6f3b0f36d7fa9d557b68c', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 17251, hash: '457c3514026f2bd66731257f71ee867357c99bb79176541cc6de0f31fceee36d', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
     'styles-ZLCZ67NS.css': {size: 77561, hash: 'lnHBzWTRmnQ', text: () => import('./assets-chunks/styles-ZLCZ67NS_css.mjs').then(m => m.default)}
   },
 };
