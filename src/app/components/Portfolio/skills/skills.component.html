@@ -1,11 +1,82 @@
-<div class="skills">
-  <h2>Skills</h2>
-  <h3>Soft Skills</h3>
-  <ul>
-    <li *ngFor="let skill of skillsData.softSkills">{{ skill }}</li>
-  </ul>
-  <h3>Hard Skills</h3>
-  <ul>
-    <li *ngFor="let skill of skillsData.hardSkills">{{ skill }}</li>
-  </ul>
+<div class="skills-carousel-root">
+  <div class="skills-carousel">
+    <ng-container *ngFor="let cat of categories; let i = index">
+      <!-- radio input para seleccionar slide -->
+      <input
+        class="carousel-input"
+        type="radio"
+        name="skills-carousel"
+        id="skill-{{ i }}"
+        [checked]="i === 0"
+        aria-hidden="true"
+      />
+
+      <!-- slide (visible solo si el input anterior está checked) -->
+      <div class="slide">
+        <article class="cat-card" role="article">
+          <div class="card-head">
+            <div class="title-block">
+              <h3 id="skill-title-{{ i }}" class="cat-title">
+                {{ cat.title }}
+              </h3>
+            </div>
+          </div>
+
+          <!-- body: por defecto expandida -->
+          <div class="card-body">
+            <div class="skills-list" role="list">
+              <div class="skill-item" *ngFor="let s of cat.skills">
+                <div class="skill-left">
+                  <div class="skill-name">{{ s.name }}</div>
+                  <div class="skill-meta">
+                    {{ s.level }} <span *ngIf="s.years">• {{ s.years }}y</span>
+                  </div>
+
+                  <!-- chips específicos de esta skill -->
+                  <div class="chips skill-chips" *ngIf="s.keywords?.length">
+                    <span class="chip" *ngFor="let kw of s.keywords">{{
+                      kw
+                    }}</span>
+                  </div>
+                </div>
+
+                <div class="skill-bar">
+                  <div class="bar-track">
+                    <div
+                      class="bar-fill"
+                      [style.width.%]="levelToPercent(s.level)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Si quieres mantener chips agrupados por categoría, podemos dejarlos aquí también -->
+            <!-- (comentado) -->
+            <!-- <div class="chips">
+              <span class="chip" *ngFor="let kw of topKeywords(cat, true)">{{ kw }}</span>
+            </div> -->
+          </div>
+
+          <!-- prev/next nav: labels apuntan a otros inputs -->
+          <div class="slide-nav">
+            <label
+              class="nav prev"
+              [attr.for]="
+                'skill-' + ((i - 1 + categories.length) % categories.length)
+              "
+              aria-hidden="true"
+              >‹</label
+            >
+            <label
+              class="nav next"
+              [attr.for]="'skill-' + ((i + 1) % categories.length)"
+              aria-hidden="true"
+              >›</label
+            >
+          </div>
+        </article>
+      </div>
+    </ng-container>
+  </div>
 </div>

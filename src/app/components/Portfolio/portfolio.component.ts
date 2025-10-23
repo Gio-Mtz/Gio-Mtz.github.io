@@ -16,7 +16,8 @@ import { HeroComponent } from './hero/hero.component';
 import { AboutComponent } from './about/about.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { SkillsComponent } from './skills/skills.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { version } from 'process';
+// import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
   selector: 'app-portfolio',
@@ -25,12 +26,14 @@ import { ProjectsComponent } from './projects/projects.component';
     AboutComponent,
     ExperienceComponent,
     SkillsComponent,
-    ProjectsComponent,
+    // ProjectsComponent,
   ],
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit, AfterViewInit, OnChanges {
+  currentYear: number = new Date().getFullYear();
+  version: string = '1.0.0';
   private sections: HTMLElement[] = [];
   private indexLinks: HTMLElement[] = [];
   private currentSectionIndex: number = 0;

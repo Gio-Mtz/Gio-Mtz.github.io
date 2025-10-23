@@ -1,8 +1,48 @@
 <div class="experience">
-  <h2>Experience</h2>
-  <div *ngFor="let experience of experienceData">
-    <h3>{{ experience.company }}</h3>
-    <p>{{ experience.role }} - {{ experience.duration }}</p>
-    <p>{{ experience.description }}</p>
+  <div class="experience-carousel">
+    <ng-container *ngFor="let exp of experienceData; let i = index">
+      <!-- radio input selects the active slide -->
+      <input
+        class="carousel-input"
+        type="radio"
+        name="exp-carousel"
+        id="exp-{{ i }}"
+        [checked]="i === 0"
+      />
+
+      <!-- slide that becomes visible when the preceding radio is checked -->
+      <div class="slide">
+        <div class="slide-inner" style="width: 80%; text-align: justify">
+          <h2
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            {{ exp.company }}
+          </h2>
+          <h3 class="meta">{{ exp.role }} - {{ exp.duration }}</h3>
+          <p class="tech">{{ exp.technologies.join(", ") }}</p>
+          <p class="desc">{{ exp.description }}</p>
+        </div>
+
+        <!-- prev / next labels target the other inputs by id -->
+        <div class="slide-nav">
+          <label
+            class="nav prev"
+            [attr.for]="
+              'exp-' + ((i - 1 + experienceData.length) % experienceData.length)
+            "
+            aria-hidden="true"
+          >
+            &#8592;
+          </label>
+          <label
+            class="nav next"
+            [attr.for]="'exp-' + ((i + 1) % experienceData.length)"
+            aria-hidden="true"
+          >
+            &#8594;
+          </label>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>

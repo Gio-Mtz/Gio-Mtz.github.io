@@ -32,5 +32,11 @@
       <span>{{ contactInfo.location }}</span>
       <mat-icon>location_on</mat-icon>
     </div>
+    <div class="contact-download">
+      <span>Download CV</span>
+      <button mat-icon-button (click)="downloadCv()" aria-label="Download CV">
+        <mat-icon>download</mat-icon>
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

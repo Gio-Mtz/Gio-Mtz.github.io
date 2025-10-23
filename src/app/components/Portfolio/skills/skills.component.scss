@@ -1,15 +1,346 @@
-@use "@angular/material" as mat;
+.skills-carousel-root {
+  padding: 1rem;
 
-.skills {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 5rem;
+  h2 {
+    text-align: center;
+    margin-bottom: 0.6rem;
   }
-}
 
-@media (min-width: 1440px) {
+  /* contenedor principal */
+  .skills-carousel {
+    position: relative;
+    width: min(1400px, 96vw);
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 620px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+
+  .carousel-input {
+    display: none;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 14px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px) scale(0.995);
+    transition: opacity 360ms ease, transform 360ms ease, visibility 360ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-input:checked + .slide {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+  }
+
+  .cat-card {
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    height: calc(100% - 36px);
+    min-height: 320px;
+    transition: padding 160ms ease, box-shadow 160ms ease;
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .title-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    max-height: calc(100vh - 240px);
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    padding-right: 6px;
+  }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+  }
+  .skill-left {
+    display: flex;
+    flex-direction: column;
+  }
+  .skill-name {
+    font-weight: 600;
+  }
+  .skill-meta {
+    font-size: 0.85rem;
+    color: var(--muted, #fefeff);
+  }
+  .skill-bar {
+    width: 220px;
+    max-width: 36%;
+    min-width: 90px;
+  }
+  .bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    transition: width 420ms ease;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+  }
+
+  .slide-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .nav {
+    pointer-events: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--card-bg, #fff);
+    color: var(--text-color, #111);
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: background 180ms;
+  }
+  .prev {
+    left: 18px;
+  }
+  .next {
+    right: 18px;
+  }
+
+  .skill-chips {
+    margin-top: 6px;
+    .chip {
+      font-size: 0.72rem;
+      padding: 3px 6px;
+    }
+  }
+
+  /* -------------------------
+     ADJUSTS BETWEEN 1496 AND 720
+     ------------------------- */
+
+  /* Slightly reduce sizes under very large desktops to avoid floating feeling */
+  @media (max-width: 1600px) {
+    .skills-carousel {
+      max-width: 1200px;
+      height: 500px;
+    }
+    .cat-card {
+      max-width: 1000px;
+      padding: 16px;
+    }
+    .donut-wrap {
+      width: 88px;
+      height: 88px;
+    }
+    .skill-bar {
+      width: 200px;
+    }
+  }
+
+  /* Medium-large screens: use a 2-column grid to show more content at once (better balance) */
+  @media (max-width: 1199px) and (min-width: 900px) {
+    /* switch visual from single centered slide to grid (2 columns x auto rows) */
+    .skills-carousel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      height: auto;
+      padding: 12px;
+    }
+
+    .slide {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      display: block;
+      inset: auto;
+    }
+    .carousel-input {
+      display: none;
+    } /* hide radio controls in grid mode */
+
+    .cat-card {
+      height: 100%;
+      max-width: 100%;
+      padding: 14px;
+      min-height: 320px;
+    }
+
+    .card-body {
+      max-height: 360px;
+    }
+    .skills-list {
+      max-height: 200px;
+    }
+    .donut-wrap {
+      width: 76px;
+      height: 76px;
+    }
+    .dots,
+    .slide-nav {
+      display: none;
+    }
+  }
+
+  /* Narrow tablets & large phones: single column but comfortable width */
+  @media (max-width: 899px) and (min-width: 721px) {
+    .skills-carousel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: auto;
+      padding: 12px;
+      align-items: center;
+    }
+
+    .slide {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      display: block;
+      min-width: 720px; /* ensure comfortable width until 720 breakpoint */
+      max-width: 880px;
+      width: min(880px, 96%);
+    }
+
+    .cat-card {
+      max-width: 880px;
+      padding: 14px;
+      height: auto;
+    }
+
+    .card-body {
+      max-height: 420px;
+    }
+    .skills-list {
+      max-height: 220px;
+    }
+    .donut-wrap {
+      width: 72px;
+      height: 72px;
+    }
+    .dots,
+    .slide-nav {
+      display: none;
+    }
+  }
+
+  /* Mobile: turn into swipeable horizontal carousel (existing rules) */
+  @media (max-width: 720px) {
+    .skills-carousel {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      height: auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 12px;
+    }
+
+    .slide {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      display: block;
+      min-width: min(92vw, 900px);
+      flex: 0 0 min(92vw, 900px);
+      scroll-snap-align: center;
+    }
+
+    .carousel-input,
+    .slide-nav,
+    .dots {
+      display: none;
+    }
+
+    .cat-card {
+      height: auto;
+      max-height: calc(100vh - 180px);
+    }
+
+    .card-body {
+      max-height: none;
+    }
+    .skills-list {
+      max-height: 160px;
+    }
+    .donut-wrap {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  /* extra small phones */
+  @media (max-width: 480px) {
+    .skill-bar {
+      width: 140px;
+    }
+    .cat-card {
+      padding: 12px;
+      border-radius: 10px;
+    }
+    .skills-list {
+      max-height: 140px;
+    }
+  }
 }

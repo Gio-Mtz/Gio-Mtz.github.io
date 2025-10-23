@@ -58,6 +58,12 @@ h3 {
   padding: 0.5rem;
 }
 
+.contact-download {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 a {
   text-decoration: none;
   color: mat.m2-get-color-from-palette($custom-primary, 100);

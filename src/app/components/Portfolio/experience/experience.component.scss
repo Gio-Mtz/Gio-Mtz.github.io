@@ -1,10 +1,5 @@
 @use "@angular/material" as mat;
 
-.experience {
-  display: flex;
-  flex-direction: column;
-}
-
 @media (min-width: 768px) {
   .hero {
     padding: 5rem;
@@ -12,4 +7,132 @@
 }
 
 @media (min-width: 1440px) {
+}
+.experience {
+  padding: 1rem;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .experience-carousel {
+    position: relative;
+    width: min(1080px, 96vw);
+    max-width: 1080; /* XL width cap */
+    margin: 0 auto;
+    height: 380px; /* larger default height for XL look */
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  @media (min-width: 1440px) {
+    .experience-carousel {
+      height: 440px; /* bigger on very large screens */
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .experience-carousel {
+      height: auto;
+      padding: 0.6rem;
+      width: calc(100% - 1.2rem);
+    }
+  }
+
+  .carousel-input {
+    display: none;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 1.2rem;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.995);
+    transition: opacity 360ms ease, transform 360ms ease, visibility 360ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* show the slide whose preceding input is checked */
+  .carousel-input:checked + .slide {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    z-index: 2;
+  }
+
+  .meta {
+    font-weight: 600;
+    margin: 0.25rem 0 0.5rem 0;
+  }
+
+  .tech {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .slide-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .nav {
+    pointer-events: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--card-bg, #fff);
+    color: var(--text-color, #111);
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: background 180ms;
+  }
+
+  .nav:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .prev {
+    left: 12px;
+  }
+
+  .next {
+    right: 12px;
+  }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    .experience-carousel {
+      height: auto;
+      padding: 0.6rem;
+    }
+    .nav {
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
+  }
 }

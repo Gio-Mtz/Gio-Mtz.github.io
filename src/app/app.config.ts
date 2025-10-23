@@ -8,6 +8,7 @@ import { provideStore } from '@ngrx/store';
 import { portfolioReducer } from './store/reducers/portfolio.reducer';
 import { provideEffects } from '@ngrx/effects';
 import { PortfolioEffects } from './store/effects/portfolio.effects';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore({ portfolio: portfolioReducer }),
     provideEffects([PortfolioEffects]),
+    provideHttpClient(),
   ],
 };

@@ -7,7 +7,6 @@
         Experience
       </li>
       <li id="skills-link" (click)="showSection('skills')">Skills</li>
-      <li id="projects-link" (click)="showSection('projects')">Projects</li>
     </ul>
   </div>
   <div class="content">
@@ -17,8 +16,13 @@
       <app-experience></app-experience>
     </section>
     <section id="skills" class="section"><app-skills></app-skills></section>
-    <section id="projects" class="section">
-      <app-projects></app-projects>
-    </section>
   </div>
 </div>
+
+<footer class="floating-footer" role="contentinfo" aria-label="Pie de página">
+  <div class="footer-inner">
+    <span class="copyright"> © Giovanni Martínez {{ currentYear }} </span>
+    <span class="sep" aria-hidden="true">•</span>
+    <span class="version">v{{ version }}</span>
+  </div>
+</footer>
