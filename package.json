@@ -9,7 +9,7 @@
     "test": "ng test",
     "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs",
     "test-jest": "jest",
-    "deploy": "ng build --base-href /Gio-Mtz.github.io/ && npx angular-cli-ghpages --dir=dist/portfolio"
+    "deploy": "ng build --base-href \"https://gio-mtz.github.io/\" && npx angular-cli-ghpages --dir=dist/portfolio/browser"
   },
   "private": true,
   "dependencies": {
