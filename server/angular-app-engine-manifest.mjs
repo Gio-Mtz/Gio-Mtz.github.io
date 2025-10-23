@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'C:/Program Files/Git',
+  basePath: 'https://gio-mtz.github.io',
   supportedLocales: {
   "en-US": ""
 },
